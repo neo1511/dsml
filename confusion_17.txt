@@ -1,0 +1,23 @@
+tp = 1
+tn = 90
+fp = 1
+fn = 8
+total = tp + tn + fp + fn
+
+recall = tp/(tp + fn)
+print("Recall : %.3f" % recall)
+
+accurary = (tp + tn)/total
+print("Accurary : %.3f" % accurary) 
+
+error = 1 - accurary
+print("Error =  %.3f" % error)
+
+precision = tp / (tp + fp)
+print("Precission : %.3f" % precision)
+
+f1 = 2*tp /(2*tp + fp + fn)
+print("F1 Score : %.3f" % f1)
+
+false_position_rate = fp / (fp + tn)
+print("False Position Rate : %.3f" % false_position_rate)

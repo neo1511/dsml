@@ -1,0 +1,76 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('Iris.csv')
+
+df['Species'].replace({'Iris-virginica':1,'Iris-setosa':2,'Iris-versicolor':3},inplace=True)
+
+df.head()
+
+class KMeansClustering:
+    def __init__(self, X, num_clusters):
+        self.K = num_clusters 
+        self.num_examples, self.num_features = X.shape 
+        
+        
+    def initialize_random_centroids(self, X):
+        centroids = np.zeros((self.K, self.num_features)) 
+        for k in range(self.K):
+            centroid = X[np.random.choice(range(self.num_examples))] 
+            centroids[k] = centroid
+        return centroids 
+    
+    
+    def create_cluster(self, X, centroids):
+        clusters = [[] for i in range(self.K)]
+        for point_idx, point in enumerate(X):
+            closest_centroid = np.argmin(
+                np.sqrt(np.sum((point-centroids)**2, axis=1))
+            )
+            clusters[closest_centroid].append(point_idx)
+        return clusters 
+    
+    
+    def calculate_new_centroids(self, cluster, X):
+        centroids = np.zeros((self.K, self.num_features)) 
+        for idx, cluster in enumerate(cluster):
+            new_centroid = np.mean(X[cluster], axis=0)
+            centroids[idx] = new_centroid
+        return centroids
+    
+    
+    def predict_cluster(self, clusters, X):
+        y_pred = np.zeros(self.num_examples)
+        for cluster_idx, cluster in enumerate(clusters):
+            for sample_idx in cluster:
+                y_pred[sample_idx] = cluster_idx
+        return y_pred
+    
+    def fit(self, X):
+        centroids = self.initialize_random_centroids(X)
+        final_centroids = [[]]
+        for i in range(20):
+            clusters = self.create_cluster(X, centroids)
+            previous_centroids = centroids
+            centroids = self.calculate_new_centroids(clusters, X) 
+            diff = centroids - previous_centroids 
+            if i==19:
+                final_centroids = centroids
+            
+            if not diff.any():
+                final_centroids = centroids
+                break
+        y_pred = self.predict_cluster(clusters, X) 
+        return y_pred, final_centroids
+
+df['Species'].value_counts()
+
+np.random.seed(10)
+num_clusters = 3
+Kmeans = KMeansClustering(df.to_numpy(), num_clusters)
+y_pred, new_c = Kmeans.fit(df.to_numpy())
+
+y_pred
+
+new_c

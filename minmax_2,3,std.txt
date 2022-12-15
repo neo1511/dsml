@@ -1,0 +1,51 @@
+# print data
+
+import pandas as pd
+import numpy as np
+data = pd.read_csv("diabete.csv")
+print(data)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("diabete.csv")
+df
+
+# Max Value
+
+max_vals = df[['Pregnancies']].max()
+max_vals
+
+# Min Value
+
+min_vals = df[['Pregnancies']].min()
+min_vals
+
+# Max Value in all the Column
+
+max_vals  =df[:].max()
+
+max_vals
+
+# Min Value in all the Column
+
+min_vals  =df[:].min()
+min_vals
+
+# Mean value in all the column
+
+mean_val = df[:].mean()
+mean_val
+
+# Median value in all the column 
+
+median_val = df[:].median()
+median_val
+
+# Std Deviation
+std_dev = df[:].std()
+std_dev
+
+# Varience
+var = df[:].var()
+var

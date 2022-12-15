@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+import statistics as st
+
+df = pd.read_csv("houseprice.csv")
+print(df.shape)
+print(df.info())
+
+df.mean()
+
+print(df.loc[:,'price'].mean())
+print(df.loc[:,'view'].mean()) 
+
+df.median()
+
+print(df.loc[:,'price'].median())
+print(df.loc[:,'view'].median()) 
+
+df.mode()
+
+df.std()
+
+df.var()

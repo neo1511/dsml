@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("tested.csv")
+print(data)
+
+print(data.dtypes)
+
+print(data.head(10))
+
+print(data.count())
+
+plt.hist(data.PassengerId,weights=data.Fare)
+
+print(plt.title('Price Distribution'))
+print(plt.show())

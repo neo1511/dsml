@@ -1,0 +1,54 @@
+1]
+import matplotlib.pyplot as plt    # Matplotlib is a plotting library for the Python programming language
+import pandas as pd
+import seaborn as sns    # Seaborn is a library that uses Matplotlib underneath to plot graphs. It will be used to visualize random distributions.
+
+2]
+df = pd.read_csv("iris.csv")
+df
+
+3]
+indexing = df[4:7]     # displaying only rows from index 4 to 6 ie n-1
+indexing
+
+4]
+df.columns    # displays all the columns values
+
+5]
+df.isnull().sum()   # The function dataframe. isnull(). sum(). sum() returns the number of missing values in the dataset.
+
+6] 
+print(df.describe())   
+# The describe() method returns description of the data in the DataFrame. If the DataFrame contains numerical data, the description contains these information for each column: count - The number of not-empty values
+
+7]
+df['sepal_length'].describe()
+
+8]
+df['sepal_width'].describe()
+
+9] 
+df['petal_length'].describe()
+
+10]
+df['petal_width'].describe()
+
+11]
+print("Observations of each species:")
+print(df['species'].value_counts()) 
+#  The value_counts() function is used to get a Series containing counts of unique values. The resulting object will be in descending order so that the first element is the most frequently-occurring element.
+
+12] 
+print('Iris Setosa')
+setosa = df['species'] == 'Iris Setosa'
+print(df[setosa].describe())      # to describe specifically setosa as species
+
+13]
+print('Iris-verginica')
+verginica = df['species'] == 'Iris-verginica'
+print(df[verginica].describe()) 
+
+14] 
+print('Iris Versicolor')
+Versicolor = df['species'] == 'Iris Versicolor'
+print(df[Versicolor].describe()) 

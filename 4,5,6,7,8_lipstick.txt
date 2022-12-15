@@ -1,0 +1,43 @@
+import numpy as np
+import pandas as pd
+
+data=pd.read_csv("/content/dt.csv")
+print(data)
+
+data.describe()
+
+data['Buys'].value_counts()
+
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder();
+#data=data.apply(le.fit_transform)
+x=data.iloc[:,:-1] #-1 means don't take last column 
+x=x.apply(le.fit_transform)
+#find label with their encoded value
+print("Age with encodd value :",list( zip(data.iloc[:,0], x.iloc[:,0])))
+print("\nIncome with encoded value :",list( zip(data.iloc[:,1], x.iloc[:,1])))
+print("\nGender with encoded value :",list( zip(data.iloc[:,2], x.iloc[:,2])))
+print("\nmaritialStatus with encoded value :",list
+
+y=data.iloc[:,-1]
+
+from sklearn.tree import DecisionTreeClassifier
+classifier=DecisionTreeClassifier(criterion='entropy')
+classifier.fit(x,y)
+
+test_x=np.array([1,1,0,0])
+pred_y=classifier.predict([test_x])
+
+print("Predicted class for input [Age < 21, Income = Low,Gender = Female, Marital Status = Married]\n'
+
+from sklearn.tree import export_graphviz
+from IPython.display import Image
+export_graphviz(classifier,out_file="data.dot",feature_names=x.columns,class_names=["No","Yes"])
+
+  
+    
+!dot -Tpng data.dot -o tree.png
+Image("tree.png")
+
+
+

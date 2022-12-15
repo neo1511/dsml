@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("covid_vaccine_statewise.csv")
+df
+
+df.describe()
+
+num_cols=df.select_dtypes(exclude=['object']).columns
+num_cols
+
+str_cols=df.select_dtypes(exclude=['float','int']).columns
+str_cols
+
+for col in num_cols:
+    print("Column : ", col)
+    print(f"Value counts of {col}: ",df[col].value_counts().sum())
+    print(f"Number of Unique Values in {col}: ",df[col].nunique())
+    print()
+
+# b. Number of persons state wise vaccinated for first dose in India
+
+df_by_first = df.groupby('State')[['First Dose Administered']].sum().reset_index()
+df_by_first
+
+# c. Number of persons state wise vaccinated for second dose in India
+
+df_by_first = df.groupby('State')[['Second Dose Administered']].sum().reset_index()
+df_by_first

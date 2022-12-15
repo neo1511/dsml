@@ -1,0 +1,8 @@
+Accuracy = (TP + TN) / (TP+FP+TN+FN)
+Error Rate = (FP + FN) / (TP+FP+TN+FN)
+Recall = TP / (TP+FN)
+Precision = TP / (TP+FP)
+Accuracy = (90+9560)/10000 = 96.50% 
+Error rate = 1 – Accuracy = 3.50% = (140+210)/10000 
+ Precision = 90/230 = 39.13% 
+Recall = 90/300 = 30.00%

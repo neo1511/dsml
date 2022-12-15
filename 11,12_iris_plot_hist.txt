@@ -1,0 +1,36 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+dat = pd.read_excel('csv/excel')
+dat
+
+plt.hist(dat['sepal_length'],bins=30)
+plt.ylabel('No of items')
+plt.show()
+
+plt.hist(dat['sepal_width'],bins=30)
+plt.ylabel('No of items')
+plt.show()
+
+plt.hist(dat['petal_length'],bins=30)
+plt.ylabel('No of items')
+plt.show()
+
+plt.hist(dat['petal_width'],bins=30)
+plt.ylabel('No of items')
+plt.show()
+
+sns.boxplot(y = dat['sepal_length'])
+
+sns.boxplot(y = dat['sepal_width'])
+
+sns.boxplot(y = dat['petal_length'])
+
+sns.boxplot(y = dat['petal_width'])
+
+plt.scatter(x = dat['sepal_width'], y = dat['species'],color='red',linewidth=3,marker='*',edgecolor='blue')
+
+sns.boxplot(x = dat['species'], y = dat['sepal_width'])
+
+sns.boxplot(data = dat.iloc[:,0:4])
